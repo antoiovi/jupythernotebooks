@@ -1,0 +1,835 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Aggregazione dati e struttura DataFrameGroupBy}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Aggregazione dati e struttura
+DataFrameGroupBy}\label{aggregazione-dati-e-struttura-dataframegroupby}
+
+In questo blog vogliamo mostrare la struttura di un DataFrameGroupBy,
+ovvero la struttura che si ottiene da un dataframe con operazioni di
+aggregazione di dati.
+
+    \subsection{Analisi del problema}\label{analisi-del-problema}
+
+Prima di tutto da dati grezzi sotto forma di file CSV, array,
+dictionari, ecc dobbiamo costruire un dataframe :
+\includegraphics{attachment:gb01.gif} Poi dal dataframe possiamo
+aggregare i dati per esempio per una colonna :
+\includegraphics{attachment:gb02.gif} sempre per una colonna :
+\includegraphics{attachment:gb03.gif} oppure per due colonne :
+\includegraphics{attachment:gb04.gif}
+
+    
+
+    \subsection{Scriviamo un po' di codice}\label{scriviamo-un-po-di-codice}
+
+\paragraph{Importiamo le librerie
+necessarie}\label{importiamo-le-librerie-necessarie}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} importa le librerie}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\end{Verbatim}
+
+
+    \subsubsection{Creazione dataframe}\label{creazione-dataframe}
+
+Creiamo un dataframe partendo da un dictionary, a sua volta creato
+tramite array. Il dataframe rappresenta delle misure ottenute da a dei
+sensori (pressione e temperatura) in diversi periodi, per diverse
+citta'.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{localita} \PY{o}{=}         \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Milano}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Torino}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Milano}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Milano}\PY{l+s+s1}{\PYZsq{}}     \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Milano}\PY{l+s+s1}{\PYZsq{}}     \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Milano}\PY{l+s+s1}{\PYZsq{}}     \PY{p}{]}     
+        \PY{n}{sensore}\PY{o}{=}           \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temperatura}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temperatura}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temperatura}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pressione}\PY{l+s+s1}{\PYZsq{}}  \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pressione}\PY{l+s+s1}{\PYZsq{}}  \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pressione}\PY{l+s+s1}{\PYZsq{}}  \PY{p}{]}
+        \PY{n}{valore}\PY{o}{=}            \PY{p}{[}\PY{l+m+mi}{10}          \PY{p}{,}\PY{l+m+mi}{12}          \PY{p}{,}  \PY{l+m+mi}{14}          \PY{p}{,}  \PY{l+m+mi}{998}         \PY{p}{,}\PY{l+m+mi}{997}          \PY{p}{,}\PY{l+m+mi}{999}          \PY{p}{]}
+        \PY{n}{localita}\PY{o}{=}\PY{n}{localita}\PY{o}{+} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Torino}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Torino}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Milano}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}     \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Milano}\PY{l+s+s1}{\PYZsq{}}     \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Torino}\PY{l+s+s1}{\PYZsq{}}     \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Torino}\PY{l+s+s1}{\PYZsq{}}  \PY{p}{]}     
+        \PY{n}{sensore}\PY{o}{=}\PY{n}{sensore}\PY{o}{+}   \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temperatura}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temperatura}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Temperatura}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pressione}\PY{l+s+s1}{\PYZsq{}}  \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pressione}\PY{l+s+s1}{\PYZsq{}}  \PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pressione}\PY{l+s+s1}{\PYZsq{}}  \PY{p}{]}
+        \PY{n}{valore}\PY{o}{=}\PY{n}{valore}\PY{o}{+}     \PY{p}{[}\PY{l+m+mi}{10}          \PY{p}{,}\PY{l+m+mi}{12}          \PY{p}{,}  \PY{l+m+mi}{14}          \PY{p}{,}  \PY{l+m+mi}{998}         \PY{p}{,}\PY{l+m+mi}{997}         \PY{p}{,}\PY{l+m+mi}{999}          \PY{p}{]}
+        
+        \PY{n}{tabella}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localita}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{localita}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sensore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{sensore}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{valore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{valore}\PY{p}{\PYZcb{}}
+        \PY{n}{df}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{tabella}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:}    localita      sensore  valore
+        0    Milano  Temperatura      10
+        1    Torino  Temperatura      12
+        2    Milano  Temperatura      14
+        3    Milano    Pressione     998
+        4    Milano    Pressione     997
+        5    Milano    Pressione     999
+        6    Torino  Temperatura      10
+        7    Torino  Temperatura      12
+        8    Milano  Temperatura      14
+        9    Milano    Pressione     998
+        10   Torino    Pressione     997
+        11   Torino    Pressione     999
+\end{Verbatim}
+            
+    \section{Aggregazione dati}\label{aggregazione-dati}
+
+    \subsubsection{Group by su UNA colonna}\label{group-by-su-una-colonna}
+
+Proviamo a fare un groupby su una colonna , per esempio la colonna
+località. Le elaborazioni vengono effettuate sui dati corrispondenti
+alla localita'.
+
+Quindi come count ho il numero totale degli elemnti per ogni località,
+mentre come media dei valori numerici ho dei valori non attendibili in
+qunato ho la media delle pressioni e temperature insieme.
+
+Il tipo dati ottenuto `e 'pandas.core.groupby.groupby.DataFrameGroupBy'
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{gb}\PY{o}{=}\PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localita}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tipo gb :}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{gb}\PY{p}{)}\PY{p}{)}
+        \PY{n}{gb}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Tipo gb : <class 'pandas.core.groupby.groupby.DataFrameGroupBy'>
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:}          valore                                                         
+                  count        mean         std   min   25\%    50\%    75\%    max
+        localita                                                                
+        Milano      7.0  575.714286  526.684825  10.0  14.0  997.0  998.0  999.0
+        Torino      5.0  406.000000  540.420669  10.0  12.0   12.0  997.0  999.0
+\end{Verbatim}
+            
+    Calcoliamo medie e conteggi . Se si fanno calcoli numerici su campi non
+nuemrici si ha un errore (sensore : campo NON numerico, no si puo
+calcolare la media print(gb.sensore.mean()))
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{gb}\PY{o}{.}\PY{n}{sensore}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{gb}\PY{o}{.}\PY{n}{sensore}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{gb}\PY{o}{.}\PY{n}{valore}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} sensore : campo NON numerico, no si puo calcolare la media print(gb.sensore.mean())}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<pandas.core.groupby.groupby.SeriesGroupBy object at 0x7f940b46fc18>
+localita
+Milano    7
+Torino    5
+Name: sensore, dtype: int64
+localita
+Milano    575.714286
+Torino    406.000000
+Name: valore, dtype: float64
+
+    \end{Verbatim}
+
+    \subsubsection{groupby su DUE colonne}\label{groupby-su-due-colonne}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{gb}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{valore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} <pandas.core.groupby.groupby.SeriesGroupBy object at 0x7f940b47d710>
+\end{Verbatim}
+            
+    Effettuiamo un groupby su due colonne (località e sensore). Prima di
+tutto notiamo che i campi vanno passati come array( tra parentesi
+quadre). I dati sono aggregati prima per citta e poi per semsore.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{gb2}\PY{o}{=}\PY{n}{df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localita}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sensore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{gb2}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:}                      valore                                              \textbackslash{}
+                               count        mean       std    min     25\%    50\%   
+         localita sensore                                                          
+         Milano   Pressione      4.0  998.000000  0.816497  997.0  997.75  998.0   
+                  Temperatura    3.0   12.666667  2.309401   10.0   12.00   14.0   
+         Torino   Pressione      2.0  998.000000  1.414214  997.0  997.50  998.0   
+                  Temperatura    3.0   11.333333  1.154701   10.0   11.00   12.0   
+         
+                                              
+                                  75\%    max  
+         localita sensore                     
+         Milano   Pressione    998.25  999.0  
+                  Temperatura   14.00   14.0  
+         Torino   Pressione    998.50  999.0  
+                  Temperatura   12.00   12.0  
+\end{Verbatim}
+            
+    Possiamo quindi avere dei dati per localita e sensore :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{gb2}\PY{o}{.}\PY{n}{valore}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{gb2}\PY{o}{.}\PY{n}{sensore}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+localita  sensore    
+Milano    Pressione      998.000000
+          Temperatura     12.666667
+Torino    Pressione      998.000000
+          Temperatura     11.333333
+Name: valore, dtype: float64
+localita  sensore    
+Milano    Pressione      4
+          Temperatura    3
+Torino    Pressione      2
+          Temperatura    3
+Name: sensore, dtype: int64
+
+    \end{Verbatim}
+
+    \subsection{Tipi dati}\label{tipi-dati}
+
+    \paragraph{DataFrameGroupBy}\label{dataframegroupby}
+
+L'operazione groupy(...) restituisce un tipo di dato
+'pandas.core.groupby.groupby.DataFrameGroupBy' \#\#\#\# Series Il tipo
+di estrazione ottenuta effettuando calcoli su un campo è una
+pandas.core.Series .
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{gb2}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{type}\PY{p}{(}\PY{n}{gb2}\PY{o}{.}\PY{n}{valore}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.groupby.groupby.DataFrameGroupBy'>
+<class 'pandas.core.series.Series'>
+
+    \end{Verbatim}
+
+    \subparagraph{In sintesi :}\label{in-sintesi}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:groupby_2f.gif}
+\caption{groupby\_2f.gif}
+\end{figure}
+
+    \subsection{UNSTACK}\label{unstack}
+
+Con l'opzione unstack posso spostare una colonna aggregata sulla
+intestazione. Questa operazione mi trasforma la Series in dataframe, e
+posso in tale maniera effettuare operazoni specifiche del dataframe .
+Quindi nel codice sotto eseguimo questa trasformazione :
+
+da groupby -\/-\textgreater{} valore.mean()-\/-\textgreater{} Serie
+-\/-\/-\textgreater{} unstack(..) -\/-\textgreater{} dataframe :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{} Porto la colonna 0 (localita) sull \PYZsq{}header }
+         \PY{n}{df0}\PY{o}{=}\PY{n}{gb2}\PY{o}{.}\PY{n}{valore}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{unstack}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Porto la colonna 1 (sensore) sull \PYZsq{}header }
+         \PY{n}{df1}\PY{o}{=}\PY{n}{gb2}\PY{o}{.}\PY{n}{valore}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{unstack}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{unstack(0) :Porto la colonna 0 (localita) sull }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{header}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{df0}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{unstack(1) :Porto la colonna 1 (sensore) sull }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{header}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{df1}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+unstack(0) :Porto la colonna 0 (localita) sull 'header
+
+localita         Milano      Torino
+sensore                            
+Pressione    998.000000  998.000000
+Temperatura   12.666667   11.333333
+
+unstack(1) :Porto la colonna 1 (sensore) sull 'header
+
+sensore   Pressione  Temperatura
+localita                        
+Milano        998.0    12.666667
+Torino        998.0    11.333333
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{gb2}\PY{o}{.}\PY{n}{valore}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{unstack}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sensore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}22}]:} sensore   Pressione  Temperatura
+         localita                        
+         Milano        998.0    12.666667
+         Torino        998.0    11.333333
+\end{Verbatim}
+            
+    \begin{figure}
+\centering
+\includegraphics{attachment:groupby_unstack.gif}
+\caption{groupby\_unstack.gif}
+\end{figure}
+
+    Possiamo fare operazioni sui dati trasformati in dataframe :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{df0}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{df1}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+998.0
+12.666666666666666
+
+    \end{Verbatim}
+
+    \section{Iterazioni su
+DataFrameGroupBy}\label{iterazioni-su-dataframegroupby}
+
+    \subsection{DataFrameGroupBy ottenuta con una
+colonna}\label{dataframegroupby-ottenuta-con-una-colonna}
+
+\subsubsection{Iterazione ad Un parametro (for x in
+gb)}\label{iterazione-ad-un-parametro-for-x-in-gb}
+
+Ogni iterazione restitusce come elemento una TUPLA (variablie gruppo
+nell'esempio ) Il primo elemento della tupla restituisce il nome del
+gruppo (gruppo{[}0{]}) Il secondo elemento della tupla (gruppo{[}1{]})
+restituisce un dataframe che rappresenta i dati .
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}83}]:} \PY{c+c1}{\PYZsh{} i : per eseguire il ciclo solo sul primo elemento}
+         \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+         \PY{k}{for} \PY{n}{gruppo} \PY{o+ow}{in} \PY{n}{gb}\PY{p}{:}
+             \PY{n}{i}\PY{o}{=}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{gruppo}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Type gruppo : }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{gruppo}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Type gruppo[0] : }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{gruppo}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Type gruppo[1] : }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{gruppo}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{}print(type(x))}
+             \PY{c+c1}{\PYZsh{}print(\PYZdq{}X[0] =\PYZdq{},x[0],\PYZdq{}X[1]=\PYZdq{},x[1],type(x[1]))}
+             \PY{k}{if} \PY{n}{i} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                 \PY{k}{break}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+('Milano',   localita      sensore  valore
+0   Milano  Temperatura      10
+2   Milano  Temperatura      14
+3   Milano    Pressione     998
+4   Milano    Pressione     997
+5   Milano    Pressione     999
+8   Milano  Temperatura      14
+9   Milano    Pressione     998)
+<class 'tuple'>
+<class 'str'>
+<class 'pandas.core.frame.DataFrame'>
+
+    \end{Verbatim}
+
+    \subsubsection{Iterazione a Due parametri (for x,y in
+gb)}\label{iterazione-a-due-parametri-for-xy-in-gb}
+
+Con due parametri viene già scomposta la tupla mostrata in precedenza.
+
+Sul primo elemento viene caricato ad agni ciclo il nome del gruppo come
+stringa (il campo aggregato); In questo esempio il nome della citta.
+
+Sul secondo elemento (Y) vengono caricati i dati sotto forma di
+dataframe con il campo aggregato filtrato .
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}88}]:} \PY{c+c1}{\PYZsh{} i : per eseguire il ciclo solo sul primo elemento}
+         \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+         \PY{k}{for} \PY{n}{nomegruppo}\PY{p}{,}\PY{n}{dfgruppo} \PY{o+ow}{in} \PY{n}{gb}\PY{p}{:}
+             \PY{n}{i}\PY{o}{=}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{nomegruppo : }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{nomegruppo}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tipo nome gruppo :}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{nomegruppo}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{dfgruppo : }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{dfgruppo}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tipo dfgruppo :}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{dfgruppo}\PY{p}{)}\PY{p}{)}
+             \PY{k}{if} \PY{n}{i}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0} \PY{p}{:}
+                 \PY{k}{break}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+nomegruppo :  Milano
+Tipo nome gruppo : <class 'str'>
+
+dfgruppo : 
+  localita      sensore  valore
+0   Milano  Temperatura      10
+2   Milano  Temperatura      14
+3   Milano    Pressione     998
+4   Milano    Pressione     997
+5   Milano    Pressione     999
+8   Milano  Temperatura      14
+9   Milano    Pressione     998
+Tipo dfgruppo : <class 'pandas.core.frame.DataFrame'>
+
+    \end{Verbatim}
+
+    \subsection{DataFrameGroupBy creato da piu'
+aggregazioni}\label{dataframegroupby-creato-da-piu-aggregazioni}
+
+Utilizzando il DataFrameGroupBy ottenuto aggregando più colonne , come
+mome del gruppo, nella iterazione, si ottiene una tupla con i nomi dei
+campi, mentre nella seconda variabile della iterazione si ottiene sempre
+un dataframe :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}89}]:} \PY{c+c1}{\PYZsh{} i : per eseguire il ciclo solo sul primo elemento}
+         \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}
+         \PY{k}{for} \PY{n}{nomegruppo}\PY{p}{,}\PY{n}{dfgruppo} \PY{o+ow}{in} \PY{n}{gb2}\PY{p}{:}
+             \PY{n}{i}\PY{o}{=}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{nomegruppo : }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{nomegruppo}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tipo nome gruppo :}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{nomegruppo}\PY{p}{)}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{dfgruppo : }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{dfgruppo}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Tipo dfgruppo :}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n+nb}{type}\PY{p}{(}\PY{n}{dfgruppo}\PY{p}{)}\PY{p}{)}
+             \PY{k}{if} \PY{n}{i}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0} \PY{p}{:}
+                 \PY{k}{break}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+nomegruppo :  ('Milano', 'Pressione')
+Tipo nome gruppo : <class 'tuple'>
+
+dfgruppo : 
+  localita    sensore  valore
+3   Milano  Pressione     998
+4   Milano  Pressione     997
+5   Milano  Pressione     999
+9   Milano  Pressione     998
+Tipo dfgruppo : <class 'pandas.core.frame.DataFrame'>
+
+    \end{Verbatim}
+
+    \section{Operazioni varie per estrarre dati da un
+DataFrameGroupBy}\label{operazioni-varie-per-estrarre-dati-da-un-dataframegroupby}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{Otteniamo} \PY{n}{i} \PY{n}{nomi} \PY{n}{dei} \PY{n}{gruppi}\PY{p}{,} \PY{n}{sotto} \PY{n}{forma} \PY{n}{di} \PY{n}{dict\PYZus{}key}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}115}]:} \PY{n}{dk}\PY{o}{=}\PY{n}{gb2}\PY{o}{.}\PY{n}{groups}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{dk}\PY{p}{)}
+          \PY{n}{lstdk}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{dk}\PY{p}{)}
+          \PY{n}{lstdk}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+dict\_keys([('Milano', 'Pressione'), ('Milano', 'Temperatura'), ('Torino', 'Pressione'), ('Torino', 'Temperatura')])
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}115}]:} ('Torino', 'Pressione')
+\end{Verbatim}
+            
+    Otteniamo gli indici dei dati di ogni gruppo ( tipo dict\_items) e
+cerchiamo i valori nel dataframe :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}141}]:} \PY{n}{ditm}\PY{o}{=}\PY{n}{gb2}\PY{o}{.}\PY{n}{groups}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{gb2.groups.items() (tipo dict\PYZus{}item): }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{ditm}\PY{p}{)}
+          \PY{n}{items}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{ditm}\PY{p}{)}
+          \PY{n}{gr}\PY{o}{=}\PY{l+m+mi}{0}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ items=list(ditm), elenco dei gruppi. }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ items[}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{] (tupla) , rappresenta il gruppo [}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{]:  }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{gr}\PY{p}{,}\PY{n}{gr}\PY{p}{)}\PY{p}{,}\PY{n}{items}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ Nome   del gruppo }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ \PYZhy{}\PYZhy{}\PYZgt{} items[}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{][0] : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{gr}\PY{p}{,}\PY{n}{gr}\PY{p}{)}\PY{p}{,}\PY{n}{items}\PY{p}{[}\PY{n}{gr}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ Indici del gruppo }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ \PYZhy{}\PYZhy{}\PYZgt{} items[}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{][1] : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{gr}\PY{p}{,}\PY{n}{gr}\PY{p}{)}\PY{p}{,}\PY{n}{items}\PY{p}{[}\PY{n}{gr}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Ottengo le righe dal dataframe in base agli indici del gruppo :}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{items}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{:}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{ \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{} Riga del dataframe }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+gb2.groups.items() (tipo dict\_item): 
+ dict\_items([(('Milano', 'Pressione'), Int64Index([3, 4, 5, 9], dtype='int64')), (('Milano', 'Temperatura'), Int64Index([0, 2, 8], dtype='int64')), (('Torino', 'Pressione'), Int64Index([10, 11], dtype='int64')), (('Torino', 'Temperatura'), Int64Index([1, 6, 7], dtype='int64'))])
+
+ items=list(ditm), elenco dei gruppi. 
+
+ items[0] (tupla) , rappresenta il gruppo [0]:  
+ (('Milano', 'Pressione'), Int64Index([3, 4, 5, 9], dtype='int64'))
+
+ Nome   del gruppo 0 --> items[0][0] : 
+ ('Milano', 'Pressione')
+
+ Indici del gruppo 0 --> items[0][1] : 
+ Int64Index([3, 4, 5, 9], dtype='int64')
+
+Ottengo le righe dal dataframe in base agli indici del gruppo :
+
+ ----- Riga del dataframe 3
+localita       Milano
+sensore     Pressione
+valore            998
+Name: 3, dtype: object
+
+ ----- Riga del dataframe 4
+localita       Milano
+sensore     Pressione
+valore            997
+Name: 4, dtype: object
+
+ ----- Riga del dataframe 5
+localita       Milano
+sensore     Pressione
+valore            999
+Name: 5, dtype: object
+
+ ----- Riga del dataframe 9
+localita       Milano
+sensore     Pressione
+valore            998
+Name: 9, dtype: object
+
+    \end{Verbatim}
+
+    \paragraph{Altro modo per ottenere l'elenco dei
+gruppi}\label{altro-modo-per-ottenere-lelenco-dei-gruppi}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}100}]:} \PY{n+nb}{list}\PY{p}{(}\PY{n}{gb2}\PY{o}{.}\PY{n}{groups}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}100}]:} [('Milano', 'Pressione'),
+           ('Milano', 'Temperatura'),
+           ('Torino', 'Pressione'),
+           ('Torino', 'Temperatura')]
+\end{Verbatim}
+            
+    \paragraph{Otteniamo un dataframe in base al gruppo che ci interessa
+:}\label{otteniamo-un-dataframe-in-base-al-gruppo-che-ci-interessa}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}108}]:} \PY{n+nb}{type}\PY{p}{(}\PY{n}{gb2}\PY{o}{.}\PY{n}{get\PYZus{}group}\PY{p}{(}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Milano}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pressione}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{gb2}\PY{o}{.}\PY{n}{get\PYZus{}group}\PY{p}{(}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Milano}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Pressione}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}108}]:}   localita    sensore  valore
+          3   Milano  Pressione     998
+          4   Milano  Pressione     997
+          5   Milano  Pressione     999
+          9   Milano  Pressione     998
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{core}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{display}\PY{p}{,} \PY{n}{HTML}
+        \PY{n}{display}\PY{p}{(}\PY{n}{HTML}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}style\PYZgt{}.container }\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{ width:800px !important; \PYZcb{}\PYZlt{}/style\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<IPython.core.display.HTML object>
+    \end{verbatim}
+
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
