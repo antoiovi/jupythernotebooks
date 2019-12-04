@@ -1,2 +1,14 @@
 # jupythernotebooks
-List of Jupyternotebooks related to mu Python blog appunti-python.blogspot.com
+List of Jupyter notebooks related to my Python blog appunti-python.blogspot.com
+
+The notebooks have been created to create use cases of Python language, 
+and can be used as guide.
+
+The repository is organize in directories , each one for a specific argument.
+
+
+# Directories 
+## jupyterguide
+ Notebook to explore and test specific features of the Jupyter notebooks
+
+## MathAndStatistics
