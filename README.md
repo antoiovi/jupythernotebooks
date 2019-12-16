@@ -8,7 +8,19 @@ The repository is organize in directories , each one for a specific argument.
 
 
 # Directories 
+
 ## jupyterguide
  Notebook to explore and test specific features of the Jupyter notebooks
 
 ## MathAndStatistics
+Exammples which explores statistcs functions
+
+## Matplotlib
+Use cases, guide and tooltips for Matplotlib
+
+## Pandas
+
+## PythonBasics 
+
+
+
