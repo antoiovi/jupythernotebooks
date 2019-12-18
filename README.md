@@ -12,9 +12,15 @@ The repository is organize in directories , each one for a specific argument.
  Notebooks to explore and test specific features of the Jupyter notebooks
 
 ## Pandas
+
 ### CreazioneDataFrame
 Examples to create DataFrames, useful for tutorial or for testing routines which
 dataframes.
+
+### DataFrameMultiIndex
+
+Example about manupulation of MultiIndex Dataframes.
+
 ### GroupBy
 Introduction to groupby operation on a DataFrame, a descrition of data structure,
 an some operation like unstack().
