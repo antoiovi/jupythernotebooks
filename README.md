@@ -30,3 +30,17 @@ Examples which explores statistcs functions
 
 ### AppuntiCovarianza
 Easy introduction to covariance with some example.
+
+### TStudent
+
+Analisys of statistic distribution t-Student
+
+### Linear Regression Polyfit
+
+Linear regression with numpy plofyt . 
+
+## Matplotlib
+
+### DataframePlot
+
+### Seaborn-Subplots-Lineplot- stacked data
