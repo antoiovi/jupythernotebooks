@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta name="Author" content="Made by 'tree'">
+ <meta name="GENERATOR" content="$Version: $ tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro $">
+ <title>Directory Tree</title>
+ <style type="text/css">
+  <!-- 
+  BODY { font-family : ariel, monospace, sans-serif; }
+  P { font-weight: normal; font-family : ariel, monospace, sans-serif; color: black; background-color: transparent;}
+  B { font-weight: normal; color: black; background-color: transparent;}
+  A:visited { font-weight : normal; text-decoration : none; background-color : transparent; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
+  A:link    { font-weight : normal; text-decoration : none; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
+  A:hover   { color : #000000; font-weight : normal; text-decoration : underline; background-color : yellow; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
+  A:active  { color : #000000; font-weight: normal; background-color : transparent; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
+  .VERSION { font-size: small; font-family : arial, sans-serif; }
+  .NORM  { color: black;  background-color: transparent;}
+  .FIFO  { color: purple; background-color: transparent;}
+  .CHAR  { color: yellow; background-color: transparent;}
+  .DIR   { color: blue;   background-color: transparent;}
+  .BLOCK { color: yellow; background-color: transparent;}
+  .LINK  { color: aqua;   background-color: transparent;}
+  .SOCK  { color: fuchsia;background-color: transparent;}
+  .EXEC  { color: green;  background-color: transparent;}
+  -->
+ </style>
+</head>
+<body>
+	<h1>Directory Tree</h1><p>
+	<a href="/antoiovi/home/">/antoiovi/home/</a><br>
+	├── <a href="/antoiovi/home//Finanza/">Finanza</a><br>
+	│   ├── <a href="/antoiovi/home//Finanza/Analisi%20tecnica%20con%20ta.ipynb">Analisi tecnica con ta.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Finanza/analisi_titoli-Copy1.ipynb">analisi_titoli-Copy1.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Finanza/analisi_titoli.ipynb">analisi_titoli.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Finanza/pandas_datareader_example_01.ipynb">pandas_datareader_example_01.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Finanza/Scaricare%20i%20dati%20fianziari%20da%20Yahoo%20Finance.ipynb">Scaricare i dati fianziari da Yahoo Finance.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Finanza/Untitled1.ipynb">Untitled1.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Finanza/Untitled2.ipynb">Untitled2.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Finanza/Untitled3.ipynb">Untitled3.ipynb</a><br>
+	│   └── <a href="/antoiovi/home//Finanza/Untitled.ipynb">Untitled.ipynb</a><br>
+	├── <a href="/antoiovi/home//jupyter-guide/">jupyter-guide</a><br>
+	│   └── <a href="/antoiovi/home//jupyter-guide/ExportImages.ipynb">ExportImages.ipynb</a><br>
+	├── <a href="/antoiovi/home//MathAndStatistcs/">MathAndStatistcs</a><br>
+	│   ├── <a href="/antoiovi/home//MathAndStatistcs/AppuntiCovarianza.ipynb">AppuntiCovarianza.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//MathAndStatistcs/Linear%20Regression-Polyfit.ipynb">Linear Regression-Polyfit.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//MathAndStatistcs/TStudent-Copy1.ipynb">TStudent-Copy1.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//MathAndStatistcs/TStudent.ipynb">TStudent.ipynb</a><br>
+	│   └── <a href="/antoiovi/home//MathAndStatistcs/Z-Distribution.ipynb">Z-Distribution.ipynb</a><br>
+	├── <a href="/antoiovi/home//Matplotlib/">Matplotlib</a><br>
+	│   ├── <a href="/antoiovi/home//Matplotlib/DataframePlot.ipynb">DataframePlot.ipynb</a><br>
+	│   └── <a href="/antoiovi/home//Matplotlib/Seaborn-Subplots-Lineplot-%20stacked%20data.ipynb">Seaborn-Subplots-Lineplot- stacked data.ipynb</a><br>
+	├── <a href="/antoiovi/home//Pandas/">Pandas</a><br>
+	│   ├── <a href="/antoiovi/home//Pandas/CreazioneDataFrame.ipynb">CreazioneDataFrame.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Pandas/DataFrameMultiIndex.ipynb">DataFrameMultiIndex.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Pandas/GroupBy.ipynb">GroupBy.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Pandas/Pandas%20TimeSeries.ipynb">Pandas TimeSeries.ipynb</a><br>
+	│   ├── <a href="/antoiovi/home//Pandas/Series.ipynb">Series.ipynb</a><br>
+	│   └── <a href="/antoiovi/home//Pandas/Untitled.ipynb">Untitled.ipynb</a><br>
+	└── <a href="/antoiovi/home//Python/">Python</a><br>
+	<br><br>
+	</p>
+	<p>
+	<br><br>
+	</p>
+	<hr>
+	<p class="VERSION">
+		 tree v1.7.0 © 1996 - 2014 by Steve Baker and Thomas Moore <br>
+		 HTML output hacked and copyleft © 1998 by Francesc Rocher <br>
+		 JSON output hacked and copyleft © 2014 by Florian Sesser <br>
+		 Charsets / OS/2 support © 2001 by Kyosuke Tokoro
+	</p>
+</body>
+</html>

@@ -1,0 +1,1 @@
+ tree -H '/antoiovi/home/' -L 3 --noreport --charset utf-8 -P "*.ipynb" > index.txt
